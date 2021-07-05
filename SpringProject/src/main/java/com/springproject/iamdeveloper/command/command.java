@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
-public interface command {
+public interface Command {
 
-	void execute(Model model, SqlSession sqlSession, HttpSession session, HttpServletRequest request, HttpServletResponse response);
+	void execute(Model model, SqlSession sqlSession, HttpSession session);
 }

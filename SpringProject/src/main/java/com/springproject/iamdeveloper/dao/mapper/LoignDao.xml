@@ -5,5 +5,8 @@
 
 <mapper namespace = "com.springproject.iamdeveloper.dao.LoginDao">
 	
+	<select id="loginDao" resultType="com.springproject.iamdeveloper.dto.UserDto">
+		SELECT email, admin, deletedate FROM user WHERE email=#{param1} and pwd=#{param2}
+	</select>
 	
 </mapper>

@@ -9,6 +9,13 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
   <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+  
+ <script>
+	$(document).ready(function() {
+	    alert('로그인 실패: 탈퇴된 회원입니다');
+	});	
+</script>
+
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
