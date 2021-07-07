@@ -74,7 +74,7 @@
     label.error{
     display: block;
     color: red;
-    font-size: 3pt;
+    font-size: 7pt;
     margin-top: -13px;
     margin-bottom: 5px;
     
@@ -182,7 +182,7 @@ $(function(){
               required : true,
               regx : /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i,
         	  remote: {
-                  url: "./EmailCheckServlet",
+                  url: "./EmailCheckAjax",
                   type: "POST",
                   data: {
                 	  email: function() {
@@ -207,7 +207,7 @@ $(function(){
         	  required : true,
           	  regx : /^[0-9]{11,12}$/,
         	  remote: {
-                  url: "./TelCheckServlet",
+                  url: "./TelCheckAjax",
                   type: "POST",
                   data: {
                 	  email: function() {
@@ -274,7 +274,7 @@ $(function(){
 <body>
     <div id="register-box">
       <h1>회원가입</h1> 
-      <form action="register.do" method="post" name="frm" id="frm">
+      <form action="register" method="post" name="frm" id="frm">
         이메일<br>
         <input type="text" name="email"  id="email" placeholder="이메일을 입력해주세요." />
         비밀번호<br>

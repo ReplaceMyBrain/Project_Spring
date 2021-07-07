@@ -9,7 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
 	$(window).on('load', function() {
-		alert('찾으신 email은 ${searchEmail}로 확인되나 현재 탈퇴계정입니다');
+		alert('찾으신 email은 ${emailSearch}로 확인되나 현재 탈퇴계정입니다');
 	});
 	<%session.invalidate();%>
 </script>   
@@ -109,14 +109,14 @@
 <body>
     <div id="pwsearch-box">
       <h1>이메일 찾기</h1> 
-      <form action="EmailSearch.do" method="post">
+      <form action="EmailSearch" method="post">
         <span>이름</span><br>
         <input type="text" name="name" placeholder="이름을 입력해주세요." />
         <span>핸드폰번호</span><br>
         <input type="text" name="tel" placeholder="-없이 핸드폰번호를 입력해주세요." />
         <input type="submit" name="emailsearch" value="이메일 찾기" />
      </form>
-      <a href="Login.do"><button class="home">로그인</button></a> 
+      <a href="Login"><button class="home">로그인</button></a> 
    </div>  
 </body>
 </html>

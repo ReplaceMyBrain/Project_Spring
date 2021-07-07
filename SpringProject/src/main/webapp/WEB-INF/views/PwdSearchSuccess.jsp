@@ -9,7 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
  <script>
 	$(window).on('load', function() {
-	    alert('찾으신 password는 : ${searchPwd} 입니다');
+	    alert('찾으신 password는 : ${pwdSearch} 입니다');
 	});
 	<%session.invalidate();%>
 </script>
@@ -111,14 +111,14 @@
 <body>
     <div id="pwsearch-box">
       <h1>비밀번호 찾기</h1> 
-      <form action="PwdSearch.do">
+      <form action="PwdSearch">
         <span>이메일</span><br>
         <input type="text" name="email" id="email" placeholder="이메일을 입력해주세요." />
         <span>핸드폰번호</span><br>
         <input type="text"  name="tel" id="tel" placeholder="-없이 핸드폰번호를 입력해주세요." />
         <input type="submit" id="pwsearch" value="비밀번호 찾기" />
      </form>
-     <a href="Login.do"><button class="home">로그인</button></a>
+      <a href="Login"><button class="home">로그인</button></a> 
    </div>  
 </body>
 </html> 

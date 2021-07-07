@@ -24,6 +24,9 @@
 	<context:component-scan base-package="com.springproject.iamdeveloper" />
 	
 	<beans:bean name="login" class = "com.springproject.iamdeveloper.command.LoginCommand"></beans:bean>
+	<beans:bean name="emailSearch" class = "com.springproject.iamdeveloper.command.EmailSearchCommand"></beans:bean>
+	<beans:bean name="pwdSearch" class = "com.springproject.iamdeveloper.command.PwdSearchCommand"></beans:bean>
+	
 	
 		<beans:bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<beans:property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></beans:property>
