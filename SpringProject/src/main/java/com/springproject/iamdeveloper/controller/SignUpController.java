@@ -21,11 +21,9 @@ public class SignUpController {
 	@RequestMapping("/register")
 	public String register(HttpServletRequest request, Model model) {
 		String address = request.getParameter("address1") + " " + request.getParameter("address2");
-		System.out.print("레지스터 들어감?" + address);
-		System.out.print("레지스터 들어감?" + request.getParameter("tel"));
 	
 		SignUpDao dao = sqlSession.getMapper(SignUpDao.class);
-		dao.signupDao(request.getParameter("email"), request.getParameter("pwd"),request.getParameter("name"),request.getParameter("tel"),address,request.getParameter("git"));
+		dao.signupDao(request.getParameter("email"), request.getParameter("name"),request.getParameter("pwd"),address,request.getParameter("tel"),request.getParameter("git"));
 		model.addAttribute("name",request.getParameter("name"));
 		return "SignupSuccess";
 	}
