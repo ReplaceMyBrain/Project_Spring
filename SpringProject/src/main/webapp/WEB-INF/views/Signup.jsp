@@ -291,7 +291,7 @@ $(function(){
         GitHub아이디(선택)<br>
         <input type="text" name="git" id="git" placeholder="GitHub아이디를 입력해주세요." />
      	 <div class="check">
-        <a href="PrivacyPolicy.do"  target='_blank'>개인정보처리방침</a>에 동의합니다.<input type="checkbox" name="agreechk" id="agreechk">
+        <a href="PrivacyPolicy"  target='_blank'>개인정보처리방침</a>에 동의합니다.<input type="checkbox" name="agreechk" id="agreechk">
     	 </div>
         <input type="submit" id=register value="회원가입" />
      </form>

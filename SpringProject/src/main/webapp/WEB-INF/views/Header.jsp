@@ -93,8 +93,8 @@
             <% //세션값이 없으면 회원가입 표시 아닐경우 로그인으로 표시됨. 
             Object email = session.getAttribute("email");
             if(email == null) {%>
-                <li><a href="Signup.do" class="Guest">SignUp</a></li>
-                <li><a href="Login.do" class="Guest">login</a></li>
+                <li><a href="Signup" class="Guest">SignUp</a></li>
+                <li><a href="Login" class="Guest">login</a></li>
 			<% }else {
 				Object HeaderAdmin = session.getAttribute("admin");%>
 				<%if(HeaderAdmin.equals(1)){%>

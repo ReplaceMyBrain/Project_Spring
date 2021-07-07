@@ -75,11 +75,11 @@
             <h2> 나는야 개발자 </h2>
             
             <ul class="foot_link">
-                <li><a href="Donation.do">기부</a></li>
+                <li><a href="Donation">기부</a></li>
                 <li>I</li>
-                <li><a href="TermsAndConditions.do" target='_blank'>이용약관</a></li>
+                <li><a href="TermsAndConditions" target='_blank'>이용약관</a></li>
                 <li>I</li>
-                <li><a href="PrivacyPolicy.do"  target='_blank'>개인정보취급방침</a></li>
+                <li><a href="PrivacyPolicy"  target='_blank'>개인정보취급방침</a></li>
            </ul>
             
             <p class="adress">상호 : 나는야개발자(주) <span style="margin:0 3px">|</span>  소재지 : 서울특별시 서초구 강남대로 279, 5층(서초동, 백향빌딩) 

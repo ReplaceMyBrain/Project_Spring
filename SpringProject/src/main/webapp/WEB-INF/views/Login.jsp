@@ -173,11 +173,11 @@
       <div id="kakao_id_login"> <a id="custom-login-btn" href="javascript:loginWithKakao()">
       <img src="https://developers.kakao.com/tool/resource/static/img/button/login/simple/ko/kakao_login_medium.png"></a> </div>
       <div class = "signup">
-      <span> 회원가입은 <a href="Signup.do">여기</a>를 눌러주세요</span>
+      <span> 회원가입은 <a href="Signup">여기</a>를 눌러주세요</span>
       </div>
       <div class = "caption">
-        <a href="EmailCheckForm.do">이메일찾기</a>&nbsp&nbsp&nbsp&nbsp&nbsp
-        <a href="PwdCheckForm.do">비밀번호찾기</a>
+        <a href="EmailCheckForm">이메일찾기</a>&nbsp&nbsp&nbsp&nbsp&nbsp
+        <a href="PwdCheckForm">비밀번호찾기</a>
       </div>
     </section>
   <script>

@@ -7,11 +7,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
+  <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+  <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+  
+  <script>
 	$(document).ready(function() {
 	    alert('${name}님의 회원가입을  축하합니다!');
 	});	
-</script>     
+</script>  
+
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
@@ -47,7 +51,7 @@
     margin-top: 10%;
     background: linear-gradient(rgba(204, 204, 204, 0.3),rgba(71, 71, 71, 0.3));
     width: 350px;
-    padding:50px 30px;
+    padding:40px 30px;
     border-radius: 10px;
     box-shadow: 12px 12px 20px #000;
 
@@ -105,27 +109,12 @@
     font-size: 20px;
     border: none;
     border-radius: 25px;
+    margin-bottom: 20px;
+    margin-top: 15px;
   }
-  .btn-social{margin-top:  10px;
-  }
-  .btn-social button{
-    width: 50%; height: 20px;
-    background: #fff;
-    color: rgb(0, 0, 0);
-    font-size: 15px;
-    border: none;
-    border-radius: 10px;
-  }
-  .btn-social button.naver{
-    background: #00ff37c2;
-    color: rgba(0, 0, 0);
-  }
-  .btn-social button.kakao{
-    background: #fbff00b4;
-    color: rgba(0, 0, 0);
-  }
+
   .signup{
-      margin-top: 15px;
+      margin-top: 60px;
       text-align: center;
   }
   .signup span{
@@ -135,7 +124,7 @@
   
   .signup a {
     font-size: 20px; color:rgb(0, 155, 216);
-     text-decoration: none;
+    text-decoration: none;
   }
 
   .caption {
@@ -145,6 +134,20 @@
      font-size: 15px; color:rgb(182, 179, 179);
      text-decoration: none;
   }
+  #naver_id_login {
+    position: absolute;
+  	margin-left: 20px;
+  
+  }
+  
+  #kakao_id_login a {
+    position: absolute;
+    margin-left: 160px;
+  }
+  #kakao_id_login img {
+    width: 100px;
+    height: 40px;
+  }
 
 </style>
   <title>나는야개발자</title>
@@ -153,12 +156,12 @@
 
     <header class="vid-header container">
       <div class="fullscreen-vid-wrap">
-        <a href="Main.do"><video src="video/video2.mp4" autoplay loop muted></video></a>
+        <a href="main"><video src="/iamdeveloper/resources/video/video2.mp4" autoplay loop muted></video></a>
       </div>
     </header>
     <section class="login-form">
       <h1>Login</h1>
-      <form action="login.do" method="post">
+      <form action="loginClick" method="post">
         <div class = "int-area">
             <input type="text" name="email" id="email"
             autocomplete="off" required>
@@ -173,16 +176,15 @@
           <button id="btn" type="submit"> 로그인 </button>
         </div>
       </form>
-      
-        <div class="btn-social"> 
-          <a href=""><button class="naver">NAVER</button></a><a href=""><button class="kakao">KaKao</button></a> 
-       </div>
+      <div id="naver_id_login"></div>
+      <div id="kakao_id_login"> <a id="custom-login-btn" href="javascript:loginWithKakao()">
+      <img src="https://developers.kakao.com/tool/resource/static/img/button/login/simple/ko/kakao_login_medium.png"></a> </div>
       <div class = "signup">
-      <span> 회원가입은 <a href="Signup.do">여기</a>를 눌러주세요</span>
+      <span> 회원가입은 <a href="Signup">여기</a>를 눌러주세요</span>
       </div>
       <div class = "caption">
-        <a href="EmailCheckForm.do">이메일찾기</a>&nbsp&nbsp&nbsp&nbsp&nbsp
-        <a href="PwdCheckForm.do">비밀번호찾기</a>
+        <a href="EmailCheckForm">이메일찾기</a>&nbsp&nbsp&nbsp&nbsp&nbsp
+        <a href="PwdCheckForm">비밀번호찾기</a>
       </div>
     </section>
   <script>
@@ -205,8 +207,35 @@
             },1500);
       }
     });
-
   </script>
+    <script type="text/javascript">
+    //네이버 api
+    var naver_id_login = new naver_id_login("GEn5BsvETFtbptoXb3iD", "http://localhost:8090/JSP_project/naver.do");
+    var state = naver_id_login.getUniqState();
+    naver_id_login.setButton("white", 2,40);
+    naver_id_login.setDomain("/JSP_project");
+    naver_id_login.setState(state);
+    naver_id_login.setPopup();
+    naver_id_login.init_naver_id_login();
+  </script>
+
+<script type="text/javascript">
+	//카카오api
+	
+	window.Kakao.init('ec2756af0fdc1f93414b818178f9770f');
+ 
+	function loginWithKakao() {
+    Kakao.Auth.login({
+      success: function(authObj) {
+        alert('나는야 개발자사이트에 오신걸 환영합니다')
+      },
+      fail: function(err) {
+        alert(JSON.stringify(err))
+      },
+    })
+  }
+</script>
+  
 </body>
 </html>
 

@@ -20,14 +20,7 @@ public class LoginController {
 	
 	private Command LoginCommand = null;
 	
-//	private JdbcTemplate template;
-	
-//	@Autowired
-//	public void setTemplate(JdbcTemplate template) {
-//		this.template = template;
-//		Constant.template = this.template;
-//	}
-	
+
 	@Autowired
 	public void auto(Command login) {
 		this.LoginCommand = login;
@@ -58,11 +51,23 @@ public class LoginController {
 		return "Main";	
 	}
 	
-	@RequestMapping("/logout")
-	public String logout(Model model, HttpSession session) {
-		session.invalidate();
-		return "Login";
+	@RequestMapping("/PwdCheckForm")
+	public String PwdCheckForm(Model model) {
+		return "PwdSearch";	
 	}
+	
+	@RequestMapping("/EmailCheckForm")
+	public String EmailCheckForm(Model model) {
+		return "EmailSearch";	
+	}
+	
+	@RequestMapping("/Signup")
+	public String Signup(Model model) {
+		return "Signup";	
+	}
+	
+	
+	
 
 		
 	
