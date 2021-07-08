@@ -71,7 +71,7 @@
     <div id="donate_box">
     
       <div id="donate-amount">
-       <form action="DonateClick.do">
+       <form action="DonateClick">
           <input autocomplete="off" type="radio" name="amount" id="amount5" value="5" checked="">
           <label for="amount5">$5</label>
         

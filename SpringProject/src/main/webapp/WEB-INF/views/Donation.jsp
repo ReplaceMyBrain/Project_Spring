@@ -57,7 +57,7 @@
   <div id="donate-black">
     <h1>Donate to Developers !</h1>
     <p>This web is—and always will be—free. Our mission is to provide users amazing experience and lots of information. Your donation directly helps the development of 나는야 개발자.</p>
-  	<br><p id=total> Total: ${sumDonate }$</p>
+  	<br><p id=total> Total: ${sumDonate}$</p>
   </div><br>
   
   
@@ -66,7 +66,7 @@
     <div id="donate_box">
     
       <div id="donate-amount">
-       <form action="DonateClick.do">
+       <form action="DonateClick">
           <input autocomplete="off" type="radio" name="amount" id="amount5" value="5" checked="">
           <label for="amount5">$5</label>
         
