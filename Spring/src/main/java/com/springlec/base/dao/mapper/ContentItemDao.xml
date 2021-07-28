@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+  <mapper namespace="com.springlec.base.dao.ContentItemDao"> <!-- 쟤랑 같은애야 -->
+ 
+	<select id="contentView" resultType="com.springlec.base.dto.ContentItemDto">
+		SELECT I.I_NUM, U.NAME, W.USER_EMAIL, I.I_TITLE, I.I_CONTENT, I.I_IMAGE, I.I_CATEGORY, I.I_HITS, W.IW_REGIST
+		 FROM ITEM I, WRITE_ITEM W, USER U WHERE U.EMAIL = W.USER_EMAIL  AND I.I_NUM = W.ITEM_I_NUM AND I.I_NUM = #{param1}
+	</select>
+	
+	<update id="contentDelete">
+		UPDATE WRITE_ITEM SET IW_DELETE = NOW() WHERE ITEM_I_NUM = #{param1}
+	</update>
+	
+	<insert id="commentWrite">
+		INSERT INTO COMMENT_ITEM (USER_EMAIL, ITEM_I_NUM, IC_CONTENT, IC_REGIST) VALUES (#{param2},#{param1},#{param3},NOW())
+	</insert>
+
+	<select id="commentSelect" resultType="com.springlec.base.dto.ContentItemDto">
+		SELECT I.IC_NUM, U.NAME, I.USER_EMAIL, I.IC_CONTENT, I.IC_REGIST FROM COMMENT_ITEM I, USER U WHERE  ITEM_I_NUM = #{param1} AND U.EMAIL = I.USER_EMAIL AND IC_DELETE IS NULL ORDER BY IC_NUM DESC LIMIT #{param2}, #{param3}
+	</select>
+	
+	<select id="selectCommnetCnt" resultType="int">
+		SELECT COUNT(*) FROM COMMENT_ITEM WHERE ITEM_I_NUM = #{param1} AND IC_DELETE IS NULL
+	</select>
+	
+	<select id="commentContent" resultType="com.springlec.base.dto.ContentItemDto">
+		SELECT IC_NUM, IC_CONTENT FROM COMMENT_ITEM WHERE IC_NUM = #{param1}
+	</select>
+	 
+	<update id="commentModiey">
+		UPDATE COMMENT_ITEM SET IC_CONTENT = #{param2}, IC_EDIT = NOW() WHERE IC_NUM = #{param1}
+	</update>
+	
+	<update id="commentDelete">
+		UPDATE COMMENT_ITEM SET IC_DELETE = NOW() WHERE IC_NUM = #{param1}
+	</update>
+	
+ </mapper>

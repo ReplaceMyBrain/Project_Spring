@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="com.springlec.base.dao.AdminUserDao"> <!-- 쟤랑 같은애야 -->
+ 
+	<select id="userSelect" resultType="com.springlec.base.dto.AdminUserDto">
+		SELECT * FROM USER ORDER BY CREATEDATE DESC LIMIT #{param1}, #{param2}
+	</select>
+
+	<select id="selectUserCnt" resultType="Integer">
+		SELECT COUNT(*) FROM USER
+	</select>
+	
+	<update id="userDelete">
+		UPDATE USER SET DELETEDATE = NOW() WHERE EMAIL = #{param1}
+	</update>
+	
+	<update id="userRecover">
+		UPDATE USER SET DELETEDATE = NULL WHERE EMAIL = #{param1}
+	</update>
+	
+	<select id="userSelect2" resultType="com.springlec.base.dto.AdminUserDto">
+		SELECT * FROM USER WHERE NAME LIKE CONCAT('%', #{param1}, '%') OR EMAIL LIKE CONCAT('%', #{param1}, '%') ORDER BY CREATEDATE DESC LIMIT #{param2}, #{param3}
+	</select>
+	
+	<select id="selectUserCnt2" resultType="int">
+		SELECT COUNT(*) FROM USER WHERE NAME LIKE CONCAT('%', #{param1}, '%') OR EMAIL LIKE CONCAT('%', #{param1}, '%')
+	</select>
+	
+ </mapper>

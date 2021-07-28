@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "com.springlec.base.dao.ItemsDao">
+
+	<select id="itemListDao" resultType="com.springlec.base.dto.PostDto">
+		SELECT I_NUM AS num, I_TITLE AS title, I_CONTENT AS content, I_IMAGE AS image, I_CATEGORY AS category, I_HITS AS views FROM ITEM WHERE I_NUM IN (SELECT ITEM_I_NUM FROM WRITE_ITEM WHERE IW_DELETE IS NULL) LIMIT #{param1}, #{param2} 
+	</select>
+	
+	<select id="listComDao" resultType="com.springlec.base.dto.PostDto">
+		SELECT I_NUM AS num, I_TITLE AS title, I_CONTENT AS content, I_IMAGE AS image, I_CATEGORY AS category, I_HITS AS views FROM ITEM WHERE I_CATEGORY = '컴퓨터' AND I_NUM IN (SELECT ITEM_I_NUM FROM WRITE_ITEM WHERE IW_DELETE IS NULL) LIMIT #{param1}, #{param2}  
+	</select>
+	
+	<select id="listAccDao" resultType="com.springlec.base.dto.PostDto">
+		SELECT I_NUM AS num, I_TITLE AS title, I_CONTENT AS content, I_IMAGE AS image, I_CATEGORY AS category, I_HITS AS views FROM ITEM WHERE I_CATEGORY = '악세사리' AND I_NUM IN (SELECT ITEM_I_NUM FROM WRITE_ITEM WHERE IW_DELETE IS NULL) LIMIT #{param1}, #{param2}
+	</select>
+	
+	<select id="listDeskDao" resultType="com.springlec.base.dto.PostDto">
+		SELECT I_NUM AS num, I_TITLE AS title, I_CONTENT AS content, I_IMAGE AS image, I_CATEGORY AS category, I_HITS AS views FROM ITEM WHERE I_CATEGORY = '책상' AND I_NUM IN (SELECT ITEM_I_NUM FROM WRITE_ITEM WHERE IW_DELETE IS NULL) LIMIT #{param1}, #{param2}
+	</select>
+	
+	<select id="listOthersDao" resultType="com.springlec.base.dto.PostDto">
+		SELECT I_NUM AS num, I_TITLE AS title, I_CONTENT AS content, I_IMAGE AS image, I_CATEGORY AS category, I_HITS AS views FROM ITEM WHERE I_CATEGORY = '기타' AND I_NUM IN (SELECT ITEM_I_NUM FROM WRITE_ITEM WHERE IW_DELETE IS NULL) LIMIT #{param1}, #{param2}
+	</select>
+	
+	<select id="selectDao" resultType="com.springlec.base.dto.PostDto">
+		SELECT COUNT(*) FROM ITEM
+	</select>
+	
+	<select id ="searchItemDao" resultType="com.springlec.base.dto.PostDto">
+		SELECT I_NUM AS num, I_TITLE AS title, I_CONTENT AS content, I_IMAGE AS image, I_CATEGORY AS category, I_HITS AS views FROM ITEM WHERE I_TITLE LIKE CONCAT('%', #{param1}, '%') LIMIT #{param2}, #{param3}
+	</select>
+</mapper>

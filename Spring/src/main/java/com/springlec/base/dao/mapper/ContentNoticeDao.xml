@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+  <mapper namespace="com.springlec.base.dao.ContentNoticeDao"> <!-- 쟤랑 같은애야 -->
+ 
+	<select id="contentView" resultType="com.springlec.base.dto.ContentNoticeDto">
+		SELECT N.N_NUM, U.NAME, W.USER_EMAIL, N.N_TITLE, N.N_CONTENT, N.N_HITS, W.NW_REGIST
+		FROM NOTICE N, WRITE_NOTICE W, USER U WHERE U.EMAIL = W.USER_EMAIL  AND N.N_NUM = W.NOTICE_N_NUM AND N.N_NUM = #{param1}
+	</select>
+	
+	<update id="contentDelete">
+		UPDATE WRITE_NOTICE SET NW_DELETE = NOW() WHERE NOTICE_N_NUM = #{param1}
+	</update>
+	
+	<insert id="commentWrite">
+		INSERT INTO COMMENT_NOTICE (USER_EMAIL, NOTICE_N_NUM, NC_CONTENT, NC_REGIST) VALUES (#{param2},#{param1},#{param3},NOW())
+	</insert>
+
+	<select id="commentSelect" resultType="com.springlec.base.dto.ContentNoticeDto">
+		SELECT N.NC_NUM, U.NAME, N.USER_EMAIL, N.NC_CONTENT, N.NC_REGIST FROM COMMENT_NOTICE N, USER U WHERE  NOTICE_N_NUM = #{param1} AND U.EMAIL = N.USER_EMAIL AND NC_DELETE IS NULL ORDER BY NC_NUM DESC LIMIT #{param2}, #{param3}
+	</select>
+	
+	<select id="selectCommnetCnt" resultType="int">
+		SELECT COUNT(*) FROM COMMENT_NOTICE WHERE NOTICE_N_NUM = #{param1} AND NC_DELETE IS NULL
+	</select>
+	
+	<select id="commentContent" resultType="com.springlec.base.dto.ContentNoticeDto">
+		SELECT NC_NUM, NC_CONTENT FROM COMMENT_NOTICE WHERE NC_NUM = #{param1}
+	</select>
+	 
+	<update id="commentModiey">
+		UPDATE COMMENT_NOTICE SET NC_CONTENT = #{param2}, NC_EDIT = NOW() WHERE NC_NUM = #{param1}
+	</update>
+	
+	<update id="commentDelete">
+		UPDATE COMMENT_NOTICE SET NC_DELETE = NOW() WHERE NC_NUM = #{param1}
+	</update>
+	
+ </mapper>

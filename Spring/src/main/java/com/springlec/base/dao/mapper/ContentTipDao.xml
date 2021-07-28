@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+  <mapper namespace="com.springlec.base.dao.ContentTipDao"> <!-- 쟤랑 같은애야 -->
+ 
+	<select id="contentView" resultType="com.springlec.base.dto.ContentTipDto">
+		SELECT T.T_NUM, U.NAME, W.USER_EMAIL, T.T_TITLE, T.T_CONTENT, T.T_IMAGE, T.T_CATEGORY, T.T_HITS, W.TW_REGIST
+		FROM TIP T, WRITE_TIP W, USER U WHERE U.EMAIL = W.USER_EMAIL  AND T.T_NUM = W.TIP_T_NUM AND T.T_NUM = #{param1}
+	</select>
+	
+	<update id="contentDelete">
+		UPDATE WRITE_TIP SET TW_DELETE = NOW() WHERE TIP_T_NUM = #{param1}
+	</update>
+	
+	<insert id="commentWrite">
+		INSERT INTO COMMENT_TIP (USER_EMAIL, TIP_T_NUM, TC_CONTENT, TC_REGIST) VALUES (#{param2},#{param1},#{param3},NOW())
+	</insert>
+
+	<select id="commentSelect" resultType="com.springlec.base.dto.ContentTipDto">
+		SELECT T.TC_NUM, U.NAME, T.USER_EMAIL, T.TC_CONTENT, T.TC_REGIST FROM COMMENT_TIP T, USER U WHERE  TIP_T_NUM = #{param1} AND U.EMAIL = T.USER_EMAIL AND TC_DELETE IS NULL ORDER BY TC_NUM DESC LIMIT #{param2}, #{param3}
+	</select>
+	
+	<select id="selectCommnetCnt" resultType="int">
+		SELECT COUNT(*) FROM COMMENT_TIP WHERE TIP_T_NUM = #{param1} AND TC_DELETE IS NULL
+	</select>
+	
+	<select id="commentContent" resultType="com.springlec.base.dto.ContentTipDto">
+		SELECT TC_NUM, TC_CONTENT FROM COMMENT_TIP WHERE TC_NUM = #{param1}
+	</select>
+	 
+	<update id="commentModiey">
+		UPDATE COMMENT_TIP SET TC_CONTENT = #{param2}, TC_EDIT = NOW() WHERE TC_NUM = #{param1}
+	</update>
+	
+	<update id="commentDelete">
+		UPDATE COMMENT_TIP SET TC_DELETE = NOW() WHERE TC_NUM = #{param1}
+	</update>
+	
+ </mapper>

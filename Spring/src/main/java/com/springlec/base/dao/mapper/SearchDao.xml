@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "com.springlec.base.dao.SearchDao">
+	
+	<select id="emailSearch" resultType="com.springlec.base.dto.UserDto">
+		SELECT EMAIL, DELETEDATE FROM USER WHERE NAME=#{param1} AND TEL=#{param2}
+	</select>
+	
+	<select id="pwdSearch" resultType="com.springlec.base.dto.UserDto">
+		SELECT PWD, DELETEDATE FROM USER WHERE EMAIL=#{param1} AND TEL=#{param2}
+	</select>
+	
+</mapper>

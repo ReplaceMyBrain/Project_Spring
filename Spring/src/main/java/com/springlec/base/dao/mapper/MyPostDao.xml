@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "com.springlec.base.dao.MyPostDao">
+	<select id="myListDao" resultType="com.springlec.base.dto.PostDto">
+		SELECT I_NUM AS num, I_TITLE AS title, I_CONTENT AS content, I_IMAGE AS image, I_CATEGORY AS category, I_HITS AS views FROM ITEM WHERE I_NUM IN (SELECT ITEM_I_NUM FROM WRITE_ITEM WHERE USER_EMAIL = #{param1}) UNION SELECT T_NUM AS num, T_TITLE AS title, T_CONTENT AS content, T_IMAGE AS image, T_CATEGORY AS category, T_HITS AS views FROM TIP WHERE T_NUM IN (SELECT TIP_T_NUM FROM WRITE_TIP WHERE USER_EMAIL = #{param1}) LIMIT #{param2}, #{param3}
+	</select>
+	
+	<select id="myItemListDao" resultType="com.springlec.base.dto.PostDto">
+		SELECT I_NUM AS num, I_TITLE AS title, I_CONTENT AS content, I_IMAGE AS image, I_CATEGORY AS category, I_HITS AS views FROM ITEM WHERE I_NUM IN (SELECT ITEM_I_NUM FROM WRITE_ITEM WHERE IW_DELETE IS NULL) AND I_NUM IN (SELECT ITEM_I_NUM FROM WRITE_ITEM WHERE USER_EMAIL =  #{param1}) LIMIT  #{param2},  #{param3}
+	</select>
+	
+	<select id="myTipListDao" resultType="com.springlec.base.dto.PostDto">
+		SELECT T_NUM AS num, T_TITLE AS title, T_CONTENT AS content, T_IMAGE AS image, T_CATEGORY AS category, T_HITS AS views FROM TIP WHERE T_NUM IN (SELECT TIP_T_NUM FROM WRITE_TIP WHERE TW_DELETE IS NULL) AND T_NUM IN (SELECT TIP_T_NUM FROM WRITE_TIP WHERE USER_EMAIL =  #{param1}) LIMIT  #{param2},  #{param3}
+	</select>
+	
+	<select id="selectAllDao" resultType="int">
+		SELECT SUM(CNT) FROM (SELECT COUNT(*) AS CNT FROM ITEM WHERE I_NUM IN (SELECT ITEM_I_NUM as num FROM WRITE_ITEM WHERE USER_EMAIL = #{param1}) UNION SELECT COUNT(*) AS CNT FROM TIP WHERE T_NUM IN (SELECT TIP_T_NUM as num FROM WRITE_TIP WHERE USER_EMAIL = #{param2}))A
+	</select>
+	
+	<select id="selectTipDao" resultType="int">
+		"SELECT COUNT(*) FROM TIP WHERE T_NUM IN (SELECT TIP_T_NUM FROM WRITE_TIP WHERE TW_DELETE IS NULL) AND T_NUM IN (SELECT TIP_T_NUM FROM WRITE_TIP WHERE USER_EMAIL = ${param1})
+	</select>
+	
+	<select id="selectItemDao" resultType="int">
+		SELECT COUNT(*) FROM ITEM WHERE I_NUM IN (SELECT ITEM_I_NUM AS num FROM WRITE_ITEM WHERE IW_DELETE IS NULL) AND I_NUM IN (SELECT ITEM_I_NUM as num FROM WRITE_ITEM WHERE USER_EMAIL = ${param1})
+	</select>
+</mapper>
