@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "com.springlec.base.dao.ItemInfoDao">
+	
+	 <insert id="ItemInfoInsertDao">
+		INSERT INTO ITEM (I_TITLE,I_CONTENT,I_IMAGE,I_CATEGORY) VALUES (#{param1}, #{param2},#{param3}, #{param4})
+		<!-- SELECT LAST_INSERT_ID()
+		INSERT INTO WRITE_ITEM(USER_EMAIL, ITEM_I_NUM, IW_REGIST) VALUES(?,?,now())  -->
+	</insert>
+	
+	<select id="ItemselectNumDao" resultType="com.springlec.base.dto.ItemInfoDto">
+		SELECT I_NUM FROM ITEM WHERE I_NUM = #{param1}
+	</select>
+	
+	<insert id="ItemDateDao">
+		INSERT INTO WRITE_ITEM(USER_EMAIL, ITEM_I_NUM, IW_REGIST) VALUES(#{param1},#{param2},now())
+	</insert>
+	
+	
+	<select id="ItemSelectDao" resultType="com.springlec.base.dto.ItemInfoDto">
+		SELECT I_TITLE,I_CONTENT,I_IMAGE,I_CATEGORY FROM ITEM WHERE I_NUM = #{param1}
+	</select>
+	
+	
+	<update id="ItemUpdateDao">
+		UPDATE ITEM SET I_TITLE=#{param1},I_CONTENT=#{param2},I_IMAGE=#{param3},I_CATEGORY=#{param4} WHERE I_NUM=#{param1}
+		<!-- UPDATE WRITE_ITEM SET IW_EDIT = now() WHERE ITEM_I_NUM = #{param1} -->
+	</update>
+	
+	<update id = "ItemUpdateDateDao">
+		UPDATE WRITE_ITEM SET IW_EDIT = now() WHERE ITEM_I_NUM = #{param1}
+	</update>
+    
+	
+</mapper>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    <mapper namespace="com.springlec.base.dao.NoticeInsertDao"> 
+    	<insert id="NoticeInsertDao">
+		INSERT INTO NOTICE (N_TITLE, N_CONTENT) VALUES (#{param1}, #{param2})
+		<!-- SELECT LAST_INSERT_ID()
+		INSERT INTO WRITE_NOTICE(USER_EMAIL, NOTICE_N_NUM, NW_REGIST) VALUES(#{param1}, #{param2},now())   -->
+	</insert>
+	
+	<select id="NoticeselectNumDao" resultType="com.springlec.base.dto.NoticeInsertDto">
+		SELECT N_NUM FROM NOTICE WHERE N_NUM = #{param1}
+	</select>
+	
+	<insert id="NoticeDateDao">
+		INSERT INTO WRITE_NOTICE(USER_EMAIL, NOTICE_N_NUM, NW_REGIST) VALUES(#{param1}, #{param2},now())
+	</insert>
+	
+	
+	<select id="NoticeSelectDao" resultType="com.springlec.base.dto.NoticeInsertDto">
+		SELECT N_TITLE,N_CONTENT FROM NOTICE WHERE N_NUM = #{param1}
+	</select>
+	
+	
+	<update id="NoUpdateDao">
+		UPDATE NOTICE SET N_TITLE=#{param1},N_CONTENT=#{param2} WHERE N_NUM = #{param1}
+		UPDATE WRITE_NOTICE SET NW_EDIT = now() WHERE NOTICE_N_NUM= #{param1}
+		<!-- UPDATE WRITE_NOTICE SET NW_EDIT = now() WHERE NOTICE_N_NUM= #{param1} -->
+	</update>
+	
+	<!-- <update id="NoUpdateDateDao">
+		UPDATE WRITE_NOTICE SET NW_EDIT = now() WHERE NOTICE_N_NUM= #{param1}
+	</update> -->
+	
+    </mapper>

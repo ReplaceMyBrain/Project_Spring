@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.springlec.base.dao.TipInsertDao"> <!-- 쟤랑 같은애야 -->
+ 
+ 	<insert id="TipInsertDao" parameterType="java.util.HashMap">
+		INSERT INTO TIP (T_TITLE, T_CONTENT, T_IMAGE, T_CATEGORY) VALUES (#{param1}, #{param2}, #{param3}, #{param4})
+		
+	</insert>
+	
+	<select id="TipselectNumDao" resultType="com.springlec.base.dto.TipInsertDto">
+		SELECT T_NUM FROM TIP WHERE T_NUM = #{param1}
+	</select>
+
+	<insert id="TipDateDao">
+		INSERT INTO WRITE_TIP(TIP_T_NUM, USER_EMAIL, TW_REGIST) VALUES (#{param1}, #{param2}, NOW())
+		<!-- INSERT INTO WRITE_TIP(TIP_T_NUM, USER_EMAIL, TW_REGIST) VALUES (#{param2}, #{param1}, NOW()) -->
+	</insert> 
+	
+	
+	<select id="TipSelectDao" resultType="com.springlec.base.dto.TipInsertDto">
+		SELECT T_TITLE,T_CONTENT,T_IMAGE,T_CATEGORY FROM TIP WHERE T_NUM = #{param1}
+	</select>
+	
+	
+	<update id="UpdateDao">
+		UPDATE TIP SET T_TITLE=#{param1},T_CONTENT=#{param2},T_IMAGE=#{param3},T_CATEGORY=#{param4} WHERE T_NUM = #{param1}
+		<!-- UPDATE WRITE_TIP SET TW_EDIT = now() WHERE TIP_T_NUM =#{param1} -->
+	</update>
+	
+	<update id="UpdateDateDao">
+		UPDATE WRITE_TIP SET TW_EDIT = now() WHERE TIP_T_NUM =#{param1} 
+	</update>
+
+ </mapper>

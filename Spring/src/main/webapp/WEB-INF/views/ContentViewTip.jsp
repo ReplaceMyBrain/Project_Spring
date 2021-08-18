@@ -7,18 +7,16 @@
 <html>
 <script type="text/javascript">
 	
-	var myEmail = '<%=(String) session.getAttribute("email")%>';
-	var Admin = '<%=(String) session.getAttribute("admin")%>';
-	console.log("myEmail=" + myEmail);
-
+	var myEmail = '<%=session.getAttribute("email")%>';
+	var Admin = '<%=session.getAttribute("admin")%>';
 	console.log("myEmail=" + myEmail);
 
 	/* 게시물 삭제 */
 	function deleteContent() {
 		var retVal = confirm("게시물 삭제하시겠습니까?");
 		if (retVal == true) {
-			var t_num = document.getElementById("deletecontent").value;
-			var url = "ContentViewTipdelete?t_num=" + t_num;
+			var i_num = document.getElementById("deletecontent").value;
+			var url = "ContentViewItemdelete?i_num=" + t_num;
 			open(url,"deleteContent","roolbar=no, location=no,menubar=no,scrollbars=no,resizable=no,width=450,height=230");
 		} else {
 			return false;
@@ -64,9 +62,9 @@
 	/* 댓글 */
 	function writeComment() {
 		var form = document.commentWrite;
-		if (form.tc_content.value == "") {
+		if (form.ic_content.value == "") {
 			alert("comment를 입력하세요!");
-			form.tc_content.focus();
+			form.ic_content.focus();
 			return false;
 		}
 		
@@ -74,7 +72,7 @@
 		var t_num = document.getElementById("t_num").value;
 		var tc_content = document.getElementById("commenttext").value;
 		if (retVal == true) {
-			var url = "TipCommentWrite?tc_content=" + tc_content + "&t_num=" + t_num;
+			var url = "CommentWriteItem?tc_content=" + tc_content + "&t_num=" + t_num;
 			open(url,"writeComment","roolbar=no, location=no,menubar=no,scrollbars=no,resizable=no,width=450,height=230");
 		} else {
 			return false;
@@ -147,27 +145,26 @@ div {
 	<!-- 상세페이지 -->
 	<div class="container">
 		<br /> <br />
-		<form action="TipContentBoard" method="post">
+		<form action="TipContentBoard" method="get">
 			<h3 class="m-2">
-			<input type="hidden" name="t_num" id="t_num" value="${content_view.t_num}">
+				<input type="hidden" name="t_num" value="${content_view.t_num}">
 				<b>${content_view.t_title}</b>
 			</h3>
 			<br />
 
 			<h6 class="m-2">
-				
 				By <a href="userProfile?">${content_view.name }</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				Date <i>${content_view.tw_regist}</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				Views <i>${content_view.t_hits}</i>
 			</h6>
 			<div>
 				<input type="submit" value="수정" id="modifyContent" class="btn btn-primary pull-right">&nbsp;&nbsp;&nbsp;
-				<a href="list2" class="btn btn-primary pull-right">목록</a>&nbsp;&nbsp;&nbsp;
+				<a href="list" class="btn btn-primary pull-right">목록</a>&nbsp;&nbsp;&nbsp;
 				<button type="button" onclick="deleteContent()" id="deletecontent" value="${content_view.t_num}" class="btn btn-primary pull-right">삭제</button>
 			</div>
 			<hr />
 			<div class="form-group">
-				<div class="m-2"><img width="300" src="${pageContext.request.contextPath }/resources/${content_view.t_image}" /></div>
+				<div class="m-2"><img width="300" src="${pageContext.request.contextPath }/resources/${content_view.t_image }" /></div>
 				<div class="m-2">${content_view.t_content}</div>
 			</div>
 		</form>
