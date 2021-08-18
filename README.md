@@ -10,8 +10,6 @@
 
 21.07.05 ~ 21.07.08
 
-워크데이 총 4일
-
 ------------------------------------------
 
 ##### 주제
@@ -23,4 +21,14 @@
 > refactoring 작업 / jsp -> springframework / mybatis / DI 사용 
 
 
----------
+--------
+##### 산출물
+![025](https://user-images.githubusercontent.com/80452660/129972248-1ba99258-2d8f-40b5-9067-2b3faa73beb7.jpg)
+------------------------------------------
+##### 개발환경
+![026](https://user-images.githubusercontent.com/80452660/129972254-e07f7d8b-4adc-4848-a522-3b562c2bd81b.jpg)
+------------------------------------------
+##### View
+![007](https://user-images.githubusercontent.com/80452660/120623321-9b090780-c49a-11eb-8150-d4493940e598.png)
+![005](https://user-images.githubusercontent.com/80452660/120623066-567d6c00-c49a-11eb-8d5a-99ab3c8c5687.png)
+
